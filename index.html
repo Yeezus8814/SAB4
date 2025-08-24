@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steal a Brainrot Generator</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a game-like feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Replaced 'Bangers' with 'Russo One' for a more modern, techy look -->
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to enhance the theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            background-image: radial-gradient(circle at top right, #1e1e3f, #1a1a2e 70%);
+            color: #e0e0e0;
+        }
+        /* Updated font class to use Russo One */
+        .font-title {
+            font-family: 'Russo One', sans-serif;
+        }
+        /* Custom scrollbar for a more stylized look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e3f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e94560;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f06273;
+        }
+        /* Glassmorphism effect for cards and modals */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Button glow effect - refined to better match the reference image */
+        .btn-glow {
+            box-shadow: 0 0 8px rgba(233, 69, 96, 0.6), 0 0 20px rgba(233, 69, 96, 0.4);
+        }
+        .progress-bar-animated {
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header Section -->
+    <header class="text-center py-8">
+        <!-- Updated title structure -->
+        <div class="flex flex-col items-center">
+            <h1 class="font-title text-6xl md:text-8xl text-white tracking-wider" style="text-shadow: 0 0 10px #e94560, 0 0 20px #e94560;">
+                Steal a Brainrot
+            </h1>
+            <!-- Adjusted margin-top for more space -->
+            <span class="font-title text-4xl md:text-5xl text-gray-300 tracking-wider">Generator</span>
+        </div>
+        <p class="text-lg text-gray-300 mt-4">Get your favorite Brainrots from the game!</p>
+    </header>
+
+    <!-- Main Content: Brainrot Grid -->
+    <main class="container mx-auto px-4 pb-12">
+        <div id="brainrot-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+            <!-- Brainrot cards will be inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Modals Section -->
+    <div id="modal-container" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm hidden">
+
+        <!-- 1. Nickname Input Modal -->
+        <div id="nickname-modal" class="glass-effect rounded-2xl p-8 w-11/12 max-w-md text-center transform scale-95 transition-transform duration-300">
+            <h2 class="font-title text-4xl text-white mb-4">Claim Your Brainrot!</h2>
+            <p class="mb-6 text-gray-300">Enter your Roblox username to continue.</p>
+            <input id="nickname-input" type="text" placeholder="YourRobloxNickname" class="w-full bg-gray-900 bg-opacity-50 border-2 border-pink-500 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-400 transition">
+            <!-- Updated button with more padding and refined glow -->
+            <button id="confirm-nickname-btn" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-5 rounded-xl mt-6 transition-transform transform hover:scale-105 btn-glow">
+                Confirm
+            </button>
+            <p id="nickname-error" class="text-red-400 mt-2 text-sm hidden">Please enter a valid username.</p>
+        </div>
+
+        <!-- 2. Loading/Progress Modal -->
+        <div id="loading-modal" class="glass-effect rounded-2xl p-8 w-11/12 max-w-md text-center hidden transform scale-95 transition-transform duration-300">
+            <h2 class="font-title text-4xl text-white mb-4">Transfer in Progress...</h2>
+            <p id="loading-status" class="mb-6 text-gray-300 h-12">Initializing connection...</p>
+            <div class="w-full bg-gray-700 rounded-full h-6 border-2 border-pink-500 overflow-hidden">
+                <div id="progress-bar" class="bg-pink-500 h-full rounded-full text-center text-white font-bold text-sm leading-6 progress-bar-animated" style="width: 0%">0%</div>
+            </div>
+        </div>
+
+        <!-- 3. Success Modal -->
+        <div id="success-modal" class="glass-effect rounded-2xl p-8 w-11/12 max-w-md text-center hidden transform scale-95 transition-transform duration-300">
+             <!-- Replaced text checkmark with a custom SVG for a better look -->
+             <div class="w-24 h-24 mx-auto mb-4 animate-pulse">
+                <svg viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#10B981" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                    <polyline class="path check" fill="none" stroke="#10B981" stroke-width="8" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                </svg>
+             </div>
+            <h2 class="font-title text-5xl text-green-400 mb-4">Success!</h2>
+            <p class="mb-6 text-gray-200 text-lg">All Brainrots have been successfully transferred to your account!</p>
+            <button id="close-success-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-transform transform hover:scale-105">
+                Awesome!
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Data for all Brainrots
+        const brainrots = [
+            { name: "Chimpanzini Spiderini", img: "https://static.wikia.nocookie.net/stealabr/images/b/bd/Chimpanzini_Spiderini_%28Steal_a_Brainrot%29.webp" },
+            { name: "Tipi Topi Taco", img: "https://static.wikia.nocookie.net/stealabr/images/7/72/Tipi_Topi_Taco.png" },
+            { name: "Bombardini Tortinii", img: "https://static.wikia.nocookie.net/stealabr/images/4/44/Bombardini_Tortinii.png" },
+            { name: "Espresso Signora", img: "https://static.wikia.nocookie.net/stealabr/images/3/38/Espresso_Signora_%28Steal_a_Brainrot%29.webp" },
+            { name: "Uncilto Samito", img: "https://static.wikia.nocookie.net/stealabr/images/e/ea/Unclito-Samito.png" },
+            { name: "Statutino Libertino", img: "https://static.wikia.nocookie.net/stealabr/images/e/ee/Statutino_Libertino_%28Steal_a_Brainrot%29.webp" },
+            { name: "Matteo", img: "https://static.wikia.nocookie.net/stealabr/images/6/6e/Matteo_%28Steal_a_Brainrot%29.webp" },
+            { name: "Los Hotspotsitos", img: "https://static.wikia.nocookie.net/stealabr/images/9/95/Los_Hotspotsitos2.png" },
+            { name: "Karkerkar kurkur", img: "https://i.postimg.cc/W1NVJY8Y/Karkerkarkurkur.png" },
+            { name: "dragon cannelloni", img: "https://tr.rbxcdn.com/180DAY-b14aa19aee59dcd2e3fdc474bc8ed42e/420/420/Hat/Webp/noFilter" },
+            { name: "Esok Sekolah", img: "https://i.postimg.cc/SQ6H77JB/esok-removebg-preview.png" },
+            { name: "Los Combinasionas", img: "https://tr.rbxcdn.com/180DAY-a06c75cf7c357e4e5ac2ce5b7192268d/420/420/BackAccessory/Webp/noFilter" },
+            { name: "La Grande Combinasion", img: "https://static.wikia.nocookie.net/stealabr/images/f/fc/La_Grande_Combinasion_%28Steal_a_Brainrot%29.webp" },
+            { name: "Trippi Troppi Troppa Trippa", img: "https://i.postimg.cc/qvzmY8vM/Trippi-Troppi-Troppa-Trippa.png" },
+            { name: "Secret Lucky Block", img: "https://i.postimg.cc/zvz7khQN/Secret-Lucky-Block-Steal-a-Brainrot.png" },
+            { name: "Chicleteira Bicicleteira", img: "https://i.postimg.cc/zB5FJW8h/Chicleteira-Bicicleteira.png" },
+            { name: "Agarrini La Palini", img: "https://i.postimg.cc/tCVZMJHG/Agarrini-La-Palini.png" },
+            { name: "Rainbow Odin Din Din Dun", img: "https://i.postimg.cc/0QQrd2C3/all-server-rainbow-odin-din-din-dun.png" },
+            { name: "Rainbow Graipuss Medussi", img: "https://i.postimg.cc/BbP6kYkB/rainbow.png" },
+            { name: "Rainbow Tralalero Tralala", img: "https://i.postimg.cc/J7s5R1WP/all-server-rainbow-tralalero-tralala.png" },
+            { name: "LOS TRALALERITOS", img: "https://tr.rbxcdn.com/180DAY-26182675b92f2ad9a61ecae30a2b8ead/420/420/BackAccessory/Webp/noFilter" },
+            { name: "LAS TRALALERITAS", img: "https://tr.rbxcdn.com/180DAY-08e3120deac49b7bc1227de3932b255c/420/420/Hat/Webp/noFilter" },
+            { name: "TRALALERO TRALALA LAVA", img: "https://tr.rbxcdn.com/180DAY-13af1b4d458233fb3fb4aa49a7ee5520/420/420/WaistAccessory/Webp/noFilter" },
+            { name: "COCOFANTO ELEFANTO", img: "https://tr.rbxcdn.com/180DAY-308310f72b54e617e6039983ffa8987e/420/420/LayeredAccessory/Webp/noFilter" },
+            { name: "BALLERINO LOLOLO", img: "https://tr.rbxcdn.com/180DAY-8722139c40ed43ae6cb73b046062ba7f/420/420/Hat/Webp/noFilter" },
+            { name: "LA VACCA SATURNO SATURNITA", img: "https://tr.rbxcdn.com/180DAY-038dd6b56d93422289d07f8f3764d75d/420/420/JacketAccessory/Webp/noFilter" },
+            { name: "NUCLEARO DINOSSAURO", img: "https://tr.rbxcdn.com/180DAY-b87295a7d3ed3eb3f8560bb3af747093/420/420/Hat/Webp/noFilter" },
+            { name: "TORRTUGINNI DRAGONFRUTINI", img: "https://tr.rbxcdn.com/180DAY-f4e2a91bab54e236f94b196b48dcdb12/420/420/LayeredAccessory/Png/noFilter" },
+            { name: "POT HOTSPOT", img: "https://tr.rbxcdn.com/180DAY-13ef80ef66437af24e15e6f99fde37e0/420/420/LayeredAccessory/Webp/noFilter" },
+            { name: "ODIN DIN DIN DUN", img: "https://tr.rbxcdn.com/180DAY-f34b12c0edcb4df38be51c74445b3b93/420/420/LayeredAccessory/Webp/noFilter" },
+            { name: "GRAIPUSS MEDUSSI", img: "https://tr.rbxcdn.com/180DAY-b4771e0464cf7ec27ce1e34803021996/420/420/LayeredAccessory/Webp/noFilter" },
+            { name: "BRAINROT NUCLEARO DINOSSAURO", img: "https://tr.rbxcdn.com/180DAY-57fa46e1fdc1ef36467bd6c630058ad3/420/420/JacketAccessory/Webp/noFilter" },
+            { name: "GARAMA AND MADUNDUNG", img: "https://i.postimg.cc/7L4xXYq9/Sh9-Puq-Zx5-DF7j73-KDJd-Hx-CNjj-HS0-GAHBFl-F3jv-Bn.png" },
+            { name: "DRAGON CANNELLONI", img: "https://tr.rbxcdn.com/180DAY-b14aa19aee59dcd2e3fdc474bc8ed42e/420/420/Hat/Webp/noFilter" },
+            { name: "LA GRANDE", img: "https://tr.rbxcdn.com/180DAY-f1a032865ad977022eedb4accebdc3df/420/420/LayeredAccessory/Webp/noFilter" }
+        ];
+
+        // DOM Elements
+        const grid = document.getElementById('brainrot-grid');
+        const modalContainer = document.getElementById('modal-container');
+        const nicknameModal = document.getElementById('nickname-modal');
+        const loadingModal = document.getElementById('loading-modal');
+        const successModal = document.getElementById('success-modal');
+        const nicknameInput = document.getElementById('nickname-input');
+        const nicknameError = document.getElementById('nickname-error');
+        const confirmBtn = document.getElementById('confirm-nickname-btn');
+        const closeBtn = document.getElementById('close-success-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const loadingStatus = document.getElementById('loading-status');
+
+        // Function to create and display brainrot cards
+        function displayBrainrots() {
+            brainrots.forEach(brainrot => {
+                const card = document.createElement('div');
+                card.className = 'glass-effect rounded-lg overflow-hidden flex flex-col items-center p-3 text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-pink-500/30';
+                
+                card.innerHTML = `
+                    <div class="aspect-square w-full flex items-center justify-center p-2">
+                        <img src="${brainrot.img}" alt="${brainrot.name}" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x200/1a1a2e/e94560?text=Image+Error';">
+                    </div>
+                    <h3 class="font-semibold text-sm mt-2 h-10 flex items-center justify-center">${brainrot.name}</h3>
+                    <button class="get-now-btn w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-3 rounded-md mt-2 transition text-sm">
+                        Get Now
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Function to show a specific modal and hide others
+        function showModal(modalToShow) {
+            modalContainer.classList.remove('hidden');
+            [nicknameModal, loadingModal, successModal].forEach(modal => {
+                if (modal === modalToShow) {
+                    modal.classList.remove('hidden');
+                    // Add a slight delay for the scale animation to be visible
+                    setTimeout(() => modal.classList.remove('scale-95'), 10);
+                } else {
+                    modal.classList.add('hidden');
+                    modal.classList.add('scale-95');
+                }
+            });
+        }
+        
+        // Function to hide all modals
+        function hideModals() {
+            modalContainer.classList.add('hidden');
+            [nicknameModal, loadingModal, successModal].forEach(modal => {
+                 modal.classList.add('scale-95');
+            });
+        }
+
+        // Realistic loading status messages
+        const loadingMessages = [
+            "Connecting to Roblox servers...",
+            "Authenticating user credentials...",
+            "Bypassing security protocols...",
+            "Accessing Brainrot database...",
+            "Injecting selected items...",
+            "Verifying transaction...",
+            "Finalizing transfer...",
+            "Almost there..."
+        ];
+
+        // Function to start the loading simulation
+        function startLoadingProcess() {
+            showModal(loadingModal);
+            let progress = 0;
+            let messageIndex = 0;
+            
+            loadingStatus.textContent = loadingMessages[messageIndex];
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+
+            // Decreased interval from 400ms to 250ms for a faster animation
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 8) + 2; // Increased progress step
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => showModal(successModal), 400);
+                }
+                
+                // Update progress bar
+                progressBar.style.width = `${progress}%`;
+                progressBar.textContent = `${progress}%`;
+
+                // Update status message at certain thresholds
+                if (progress > 20 && messageIndex === 0) messageIndex++;
+                if (progress > 35 && messageIndex === 1) messageIndex++;
+                if (progress > 50 && messageIndex === 2) messageIndex++;
+                if (progress > 65 && messageIndex === 3) messageIndex++;
+                if (progress > 75 && messageIndex === 4) messageIndex++;
+                if (progress > 85 && messageIndex === 5) messageIndex++;
+                if (progress > 95 && messageIndex === 6) messageIndex++;
+                
+                loadingStatus.textContent = loadingMessages[messageIndex];
+
+            }, 250);
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', displayBrainrots);
+
+        // Use event delegation for "Get Now" buttons
+        grid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('get-now-btn')) {
+                nicknameInput.value = ''; // Clear input field
+                nicknameError.classList.add('hidden');
+                showModal(nicknameModal);
+            }
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            if (nicknameInput.value.trim() === '') {
+                nicknameError.classList.remove('hidden');
+            } else {
+                nicknameError.classList.add('hidden');
+                startLoadingProcess();
+            }
+        });
+
+        closeBtn.addEventListener('click', hideModals);
+        
+        // Allow closing modal by clicking outside
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+                hideModals();
+            }
+        });
+
+    </script>
+</body>
+</html>
