@@ -103,10 +103,10 @@
         <div id="success-modal" class="glass-effect rounded-2xl p-8 w-11/12 max-w-md text-center hidden transform scale-95 transition-transform duration-300">
              <!-- Replaced text checkmark with a custom SVG for a better look -->
              <div class="w-24 h-24 mx-auto mb-4 animate-pulse">
-                <svg viewBox="0 0 130.2 130.2">
-                    <circle class="path circle" fill="none" stroke="#10B981" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-                    <polyline class="path check" fill="none" stroke="#10B981" stroke-width="8" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
-                </svg>
+                 <svg viewBox="0 0 130.2 130.2">
+                     <circle class="path circle" fill="none" stroke="#10B981" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                     <polyline class="path check" fill="none" stroke="#10B981" stroke-width="8" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                 </svg>
              </div>
             <h2 class="font-title text-5xl text-green-400 mb-4">Success!</h2>
             <p class="mb-6 text-gray-200 text-lg">All Brainrots have been successfully transferred to your account!</p>
@@ -118,8 +118,42 @@
     </div>
 
     <script>
-        // Data for all Brainrots
+        // Data for all Brainrots - UPDATED LIST
         const brainrots = [
+            { name: "Perrito Burrito", img: "https://brainrotz.netlify.app/images/Pe.png" },
+            { name: "Chillin Chili", img: "https://brainrotz.netlify.app/images/ch.png" },
+            { name: "Strawberry Elephant", img: "https://brainrotz.netlify.app/images/StrawberryElephant.png" },
+            { name: "Yin", img: "https://brainrotz.netlify.app/images/Yin.png" },
+            { name: "Yess My Examen", img: "https://static.wikia.nocookie.net/stealabr/images/4/4f/Yessmyexam2.png" },
+            { name: "Los Primos", img: "https://static.wikia.nocookie.net/stealabr/images/0/02/Image_2025-09-27_215024508.png" },
+            { name: "Money Money Puggy", img: "https://brainrotz.netlify.app/images/Money-Money-Puggy-Leak.png" },
+            { name: "Noo My Examen", img: "https://brainrotz.netlify.app/images/Noo-My-Exam.png" },
+            { name: "Tang Tang Kelentang", img: "https://brainrotz.netlify.app/images/Tang-Tnag-Keletang.png" },
+            { name: "Mariachi Corazoni", img: "https://brainrotz.netlify.app/images/MARIACHI-CORAZONI.png" },
+            { name: "To to to Sahur", img: "https://brainrotz.netlify.app/images/toto.png" },
+            { name: "Los Tacoritas", img: "https://brainrotz.netlify.app/images/Losta.png" },
+            { name: "La Sahur Combinasion", img: "https://brainrotz.netlify.app/images/Sahuria.png" },
+            { name: "Tictac Sahur", img: "https://static.wikia.nocookie.net/stealabr/images/c/c9/Tictac_Sahur_png.png" },
+            { name: "Los Chicleteiritas", img: "https://brainrotz.netlify.app/images/nh.png" },
+            { name: "67", img: "https://brainrotz.netlify.app/images/67.png" },
+            { name: "La Karkerkar Combinasion", img: "https://brainrotz.netlify.app/images/La.png" },
+            { name: "la extinct grande", img: "https://brainrotz.netlify.app/images/w.png" },
+            { name: "Extinct Matteo", img: "https://static.wikia.nocookie.net/stealabr/images/4/42/Lil_pump.png" },
+            { name: "Las Sis", img: "https://static.wikia.nocookie.net/stealabr/images/e/e8/Las_Sis.png" },
+            { name: "Celularcini Viciosini", img: "https://static.wikia.nocookie.net/stealabr/images/3/38/DO_NOT_GRAB_MY_PHONE%21%21%21.png" },
+            { name: "La Supreme Combinasion", img: "https://static.wikia.nocookie.net/stealabr/images/c/c8/La_Supreme_Combinasion.png" },
+            { name: "Los Nooo My Hotspotsitos", img: "https://brainrotz.netlify.app/images/Los.png" },
+            { name: "Los Bros", img: "https://brainrotz.netlify.app/images/bros.png" },
+            { name: "tralaledon", img: "https://brainrotz.netlify.app/images/ta.png" },
+            { name: "Taco Lucky Block", img: "https://brainrotz.netlify.app/images/Taco.png" },
+            { name: "dragon cannelloni", img: "https://tr.rbxcdn.com/180DAY-b14aa19aee59dcd2e3fdc474bc8ed42e/420/420/Hat/Webp/noFilter" },
+            { name: "Admin Lucky Block", img: "https://static.wikia.nocookie.net/stealabr/images/7/77/Admin_Lucky_Block.png" },
+            { name: "GARAMA AND MADUNDUNG", img: "https://brainrotz.netlify.app/images/Sh9PuqZx5DF7j73KDJdHxCNjjHS0GAHBFlF3jvBn.png" },
+            { name: "Los Matteos", img: "https://static.wikia.nocookie.net/stealabr/images/7/76/Los_Matteos.png" },
+            { name: "Job Job Job Sahur", img: "https://static.wikia.nocookie.net/stealabr/images/5/56/JobJobJobSahurVIPXRD.png" },
+            { name: "Tralalita Tralala", img: "https://tr.rbxcdn.com/180DAY-d1598685763d4b64d75b126256b90cd6/420/420/WaistAccessory/Webp/noFilter" },
+            { name: "Urubini Flamenguini", img: "https://static.wikia.nocookie.net/stealabr/images/f/f2/Flamengo%28%3F%29.png" },
+            { name: "Nooo My Hotspot", img: "https://static.wikia.nocookie.net/stealabr/images/9/97/NoMyHotspot.png" },
             { name: "Chimpanzini Spiderini", img: "https://static.wikia.nocookie.net/stealabr/images/b/bd/Chimpanzini_Spiderini_%28Steal_a_Brainrot%29.webp" },
             { name: "Tipi Topi Taco", img: "https://static.wikia.nocookie.net/stealabr/images/7/72/Tipi_Topi_Taco.png" },
             { name: "Bombardini Tortinii", img: "https://static.wikia.nocookie.net/stealabr/images/4/44/Bombardini_Tortinii.png" },
@@ -128,18 +162,17 @@
             { name: "Statutino Libertino", img: "https://static.wikia.nocookie.net/stealabr/images/e/ee/Statutino_Libertino_%28Steal_a_Brainrot%29.webp" },
             { name: "Matteo", img: "https://static.wikia.nocookie.net/stealabr/images/6/6e/Matteo_%28Steal_a_Brainrot%29.webp" },
             { name: "Los Hotspotsitos", img: "https://static.wikia.nocookie.net/stealabr/images/9/95/Los_Hotspotsitos2.png" },
-            { name: "Karkerkar kurkur", img: "https://i.postimg.cc/W1NVJY8Y/Karkerkarkurkur.png" },
-            { name: "dragon cannelloni", img: "https://tr.rbxcdn.com/180DAY-b14aa19aee59dcd2e3fdc474bc8ed42e/420/420/Hat/Webp/noFilter" },
-            { name: "Esok Sekolah", img: "https://i.postimg.cc/SQ6H77JB/esok-removebg-preview.png" },
+            { name: "Karkerkar kurkur", img: "https://brainrotz.netlify.app/images/Karkerkarkurkur.png" },
+            { name: "Esok Sekolah", img: "https://brainrotz.netlify.app/images/esok-removebg-preview.png" },
             { name: "Los Combinasionas", img: "https://tr.rbxcdn.com/180DAY-a06c75cf7c357e4e5ac2ce5b7192268d/420/420/BackAccessory/Webp/noFilter" },
             { name: "La Grande Combinasion", img: "https://static.wikia.nocookie.net/stealabr/images/f/fc/La_Grande_Combinasion_%28Steal_a_Brainrot%29.webp" },
-            { name: "Trippi Troppi Troppa Trippa", img: "https://i.postimg.cc/qvzmY8vM/Trippi-Troppi-Troppa-Trippa.png" },
-            { name: "Secret Lucky Block", img: "https://i.postimg.cc/zvz7khQN/Secret-Lucky-Block-Steal-a-Brainrot.png" },
-            { name: "Chicleteira Bicicleteira", img: "https://i.postimg.cc/zB5FJW8h/Chicleteira-Bicicleteira.png" },
-            { name: "Agarrini La Palini", img: "https://i.postimg.cc/tCVZMJHG/Agarrini-La-Palini.png" },
-            { name: "Rainbow Odin Din Din Dun", img: "https://i.postimg.cc/0QQrd2C3/all-server-rainbow-odin-din-din-dun.png" },
-            { name: "Rainbow Graipuss Medussi", img: "https://i.postimg.cc/BbP6kYkB/rainbow.png" },
-            { name: "Rainbow Tralalero Tralala", img: "https://i.postimg.cc/J7s5R1WP/all-server-rainbow-tralalero-tralala.png" },
+            { name: "Trippi Troppi Troppa Trippa", img: "https://brainrotz.netlify.app/images/Trippi_Troppi_Troppa_Trippa.webp" },
+            { name: "Secret Lucky Block", img: "https://brainrotz.netlify.app/images/Secret_Lucky_Block_%28Steal_a_Brainrot%29.webp" },
+            { name: "Chicleteira Bicicleteira", img: "https://brainrotz.netlify.app/images/Chicleteira-Bicicleteira.png" },
+            { name: "Agarrini La Palini", img: "https://brainrotz.netlify.app/images/Agarrini_La_Palini.webp" },
+            { name: "Rainbow Odin Din Din Dun", img: "https://brainrotz.netlify.app/images/all_server_rainbow_odin_din_din_dun.png" },
+            { name: "Rainbow Graipuss Medussi", img: "https://brainrotz.netlify.app/images/rainbow.png" },
+            { name: "Rainbow Tralalero Tralala", img: "https://brainrotz.netlify.app/images/all_server_rainbow_tralalero_tralala.png" },
             { name: "LOS TRALALERITOS", img: "https://tr.rbxcdn.com/180DAY-26182675b92f2ad9a61ecae30a2b8ead/420/420/BackAccessory/Webp/noFilter" },
             { name: "LAS TRALALERITAS", img: "https://tr.rbxcdn.com/180DAY-08e3120deac49b7bc1227de3932b255c/420/420/Hat/Webp/noFilter" },
             { name: "TRALALERO TRALALA LAVA", img: "https://tr.rbxcdn.com/180DAY-13af1b4d458233fb3fb4aa49a7ee5520/420/420/WaistAccessory/Webp/noFilter" },
@@ -151,10 +184,7 @@
             { name: "POT HOTSPOT", img: "https://tr.rbxcdn.com/180DAY-13ef80ef66437af24e15e6f99fde37e0/420/420/LayeredAccessory/Webp/noFilter" },
             { name: "ODIN DIN DIN DUN", img: "https://tr.rbxcdn.com/180DAY-f34b12c0edcb4df38be51c74445b3b93/420/420/LayeredAccessory/Webp/noFilter" },
             { name: "GRAIPUSS MEDUSSI", img: "https://tr.rbxcdn.com/180DAY-b4771e0464cf7ec27ce1e34803021996/420/420/LayeredAccessory/Webp/noFilter" },
-            { name: "BRAINROT NUCLEARO DINOSSAURO", img: "https://tr.rbxcdn.com/180DAY-57fa46e1fdc1ef36467bd6c630058ad3/420/420/JacketAccessory/Webp/noFilter" },
-            { name: "GARAMA AND MADUNDUNG", img: "https://i.postimg.cc/7L4xXYq9/Sh9-Puq-Zx5-DF7j73-KDJd-Hx-CNjj-HS0-GAHBFl-F3jv-Bn.png" },
-            { name: "DRAGON CANNELLONI", img: "https://tr.rbxcdn.com/180DAY-b14aa19aee59dcd2e3fdc474bc8ed42e/420/420/Hat/Webp/noFilter" },
-            { name: "LA GRANDE", img: "https://tr.rbxcdn.com/180DAY-f1a032865ad977022eedb4accebdc3df/420/420/LayeredAccessory/Webp/noFilter" }
+            { name: "BRAINROT NUCLEARO DINOSSAURO", img: "https://tr.rbxcdn.com/180DAY-57fa46e1fdc1ef36467bd6c630058ad3/420/420/JacketAccessory/Webp/noFilter" }
         ];
 
         // DOM Elements
